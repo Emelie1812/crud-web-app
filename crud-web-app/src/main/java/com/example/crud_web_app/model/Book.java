@@ -1,4 +1,4 @@
-package model;
+package com.example.crud_web_app.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
