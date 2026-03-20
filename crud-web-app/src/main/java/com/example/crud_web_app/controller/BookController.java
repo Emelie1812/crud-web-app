@@ -14,7 +14,7 @@ public class BookController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/books")
     public String home(Model model) {
         model.addAttribute("books", service.getAllBooks());
         return "books";
