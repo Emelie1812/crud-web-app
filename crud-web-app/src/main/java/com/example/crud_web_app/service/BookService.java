@@ -35,4 +35,9 @@ public class BookService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    // Lägg till bok
+    public void addBook(Book book) {
+        repository.save(book);
+    }
 }
