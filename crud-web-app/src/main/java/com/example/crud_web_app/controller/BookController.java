@@ -4,9 +4,7 @@ import com.example.crud_web_app.model.Book;
 import com.example.crud_web_app.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BookController {
@@ -17,21 +15,25 @@ public class BookController {
         this.service = service;
     }
 
-    @GetMapping("/books")
+    // Visa alla böcker
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("books", service.getAllBooks());
         return "books";
     }
 
-    @GetMapping("/books/new")
-    public String showCreateForm(Model model) {
-        model.addAttribute("book", new Book());
-        return "create-book";
+    // Lägg till bok
+    @PostMapping("/add")
+    public String addBook(@ModelAttribute Book book, Model model) {
+        service.addBook(book);
+        model.addAttribute("books", service.getAllBooks());
+        return "redirect:/"; // redirect så att sidan uppdateras
     }
 
-    @PostMapping("/books")
-    public String createBook(@ModelAttribute Book book) {
-        service.addBook(book);
-        return "redirect:/books";
+    // Ta bort bok
+    @PostMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        service.deleteBook(id);
+        return "redirect:/"; // redirect för att uppdatera listan
     }
 }

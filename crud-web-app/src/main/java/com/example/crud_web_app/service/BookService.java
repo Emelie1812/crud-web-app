@@ -15,29 +15,15 @@ public class BookService {
         this.repository = repository;
     }
 
-    // Hämta alla böcker
     public List<Book> getAllBooks() {
         return repository.findAll();
     }
 
-    // Spara bok
-    public void saveBook(Book book) {
-        repository.save(book);
-    }
-
-    // Hämta bok via id
-    public Book getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
-    }
-
-    // Ta bort bok
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-
-    // Lägg till bok
     public void addBook(Book book) {
         repository.save(book);
+    }
+
+    public void deleteBook(Long id) {
+        repository.deleteById(id);
     }
 }
