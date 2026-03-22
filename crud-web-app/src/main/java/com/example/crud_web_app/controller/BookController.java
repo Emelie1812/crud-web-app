@@ -36,4 +36,19 @@ public class BookController {
         service.deleteBook(id);
         return "redirect:/"; // redirect för att uppdatera listan
     }
+
+    // Uppdatera bok
+    @GetMapping("/edit/{id}")
+    public String editBookForm(@PathVariable Long id, Model model) {
+        Book book = service.getBookById(id);
+        model.addAttribute("book", book);
+        return "edit-book";
+    }
+
+    // Hantera uppdatering av bok
+    @PostMapping("/update/{id}")
+    public String updateBook(@PathVariable Long id, @ModelAttribute Book book) {
+        service.updateBook(id, book);
+        return "redirect:/";
+    }
 }

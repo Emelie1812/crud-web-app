@@ -26,4 +26,18 @@ public class BookService {
     public void deleteBook(Long id) {
         repository.deleteById(id);
     }
+
+    public Book getBookById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid book ID: " + id));
+    }
+
+    public void updateBook(Long id, Book updatedBook) {
+        Book book = getBookById(id);
+        book.setTitle(updatedBook.getTitle());
+        book.setDescription(updatedBook.getDescription());
+        book.setReleaseDate(updatedBook.getReleaseDate());
+        book.setAuthor(updatedBook.getAuthor());
+        book.setIsbn(updatedBook.getIsbn());
+        repository.save(book);
+    }
 }
