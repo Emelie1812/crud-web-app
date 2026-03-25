@@ -8,19 +8,19 @@ public class UpdateBookDTO {
 
     private Long id;
 
-    @NotBlank(message = "Title cannot be empty")
+    @NotBlank(message = "Titel måste anges")
     private String title;
 
-    @NotBlank(message = "Description cannot be empty")
+    @NotBlank(message = "Beskrivning måste anges")
     private String description;
 
-    @PastOrPresent(message = "Release date cannot be in the future")
+    @PastOrPresent(message = "Datum kan inte vara i framtiden")
     private LocalDate releaseDate;
 
-    @NotBlank(message = "Author cannot be empty")
+    @NotBlank(message = "Författare måste anges")
     private String author;
 
-    @NotBlank(message = "ISBN cannot be empty")
+    @NotBlank(message = "ISBN måste anges")
     private String isbn;
 
     // Getters & Setters

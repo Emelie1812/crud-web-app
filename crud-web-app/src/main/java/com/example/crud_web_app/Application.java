@@ -1,8 +1,7 @@
 package com.example.crud_web_app;
 
+import com.example.crud_web_app.dto.CreateBookDTO;
 import com.example.crud_web_app.service.BookService;
-import com.example.crud_web_app.model.Book;
-import com.example.crud_web_app.repository.BookRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,44 +16,15 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    // Lägg till 5 böcker som testdata i H2-databasen
     @Bean
-    CommandLineRunner runner(BookService service) {
+    public CommandLineRunner init(BookService service) {
         return args -> {
-
-            Book b1 = new Book();
-            b1.setTitle("The Hobbit");
-            b1.setDescription("A fantasy adventure");
-            b1.setReleaseDate(LocalDate.of(1937, 9, 21));
-            b1.setAuthor("J.R.R. Tolkien");
-            b1.setIsbn("9780261103344");
-
-            Book b2 = new Book();
-            b2.setTitle("1984");
-            b2.setDescription("Dystopian society");
-            b2.setReleaseDate(LocalDate.of(1949, 6, 8));
-            b2.setAuthor("George Orwell");
-            b2.setIsbn("9780451524935");
-
-            Book b3 = new Book();
-            b3.setTitle("To Kill a Mockingbird");
-            b3.setDescription("Justice and racism");
-            b3.setReleaseDate(LocalDate.of(1960, 7, 11));
-            b3.setAuthor("Harper Lee");
-            b3.setIsbn("9780061120084");
-
-            Book b4 = new Book();
-            b4.setTitle("The Great Gatsby");
-            b4.setDescription("American dream critique");
-            b4.setReleaseDate(LocalDate.of(1925, 4, 10));
-            b4.setAuthor("F. Scott Fitzgerald");
-            b4.setIsbn("9780743273565");
-
-            Book b5 = new Book();
-            b5.setTitle("The Alchemist");
-            b5.setDescription("Follow your dreams");
-            b5.setReleaseDate(LocalDate.of(1988, 4, 15));
-            b5.setAuthor("Paulo Coelho");
-            b5.setIsbn("9780061122415");
+            CreateBookDTO b1 = new CreateBookDTO("The Hobbit", "A fantasy novel", LocalDate.of(1937, 9, 21), "J.R.R. Tolkien", "978-0261103344");
+            CreateBookDTO b2 = new CreateBookDTO("1984", "Dystopian novel", LocalDate.of(1949, 6, 8), "George Orwell", "978-0451524935");
+            CreateBookDTO b3 = new CreateBookDTO("To Kill a Mockingbird", "Classic novel", LocalDate.of(1960, 7, 11), "Harper Lee", "978-0061120084");
+            CreateBookDTO b4 = new CreateBookDTO("Pride and Prejudice", "Romantic novel", LocalDate.of(1813, 1, 28), "Jane Austen", "978-1503290563");
+            CreateBookDTO b5 = new CreateBookDTO("The Great Gatsby", "Novel set in 1920s", LocalDate.of(1925, 4, 10), "F. Scott Fitzgerald", "978-0743273565");
 
             service.addBook(b1);
             service.addBook(b2);

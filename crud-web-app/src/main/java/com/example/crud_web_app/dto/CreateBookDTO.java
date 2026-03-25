@@ -6,22 +6,34 @@ import java.time.LocalDate;
 
 public class CreateBookDTO {
 
-    @NotBlank(message = "Title cannot be empty")
+    @NotBlank(message = "Titel måste anges")
     private String title;
 
-    @NotBlank(message = "Description cannot be empty")
+    @NotBlank(message = "Beskrivning måste anges")
     private String description;
 
-    @PastOrPresent(message = "Release date cannot be in the future")
+    @PastOrPresent(message = "Datum kan inte vara i framtiden")
     private LocalDate releaseDate;
 
-    @NotBlank(message = "Author cannot be empty")
+    @NotBlank(message = "Författare måste anges")
     private String author;
 
-    @NotBlank(message = "ISBN cannot be empty")
+    @NotBlank(message = "ISBN måste anges")
     private String isbn;
 
-    // Getters & Setters
+    // Tom konstruktor behövs för Spring
+    public CreateBookDTO() {}
+
+    // Konstruktor med alla fält (för att skapa testdata)
+    public CreateBookDTO(String title, String description, LocalDate releaseDate, String author, String isbn) {
+        this.title = title;
+        this.description = description;
+        this.releaseDate = releaseDate;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    // Getters och setters
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
